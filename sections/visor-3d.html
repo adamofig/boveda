@@ -1,0 +1,35 @@
+<div class="bg-glow-orb" style="top: 20%; left: 30%; width: 350px; height: 350px; opacity: 0.4;"></div>
+<div class="container">
+  <div class="section-header">
+    <span class="tag">Modelo Interactivo</span>
+    <h2>Visor 3D Conceptual</h2>
+  </div>
+
+  <div class="visor-3d-container">
+    <div class="canvas-wrapper" id="canvas-wrapper">
+      <div class="visor-instructions">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+        </svg>
+        <span>Arrastra</span> para rotar | <span>Scroll</span> para zoom
+      </div>
+      <!-- Canvas will be injected by JavaScript -->
+    </div>
+
+    <div class="visor-3d-details">
+      <h3>Perspectiva Tridimensional</h3>
+      <p>Explora el volumen de la bóveda de cañón en tiempo real. Esta maqueta interactiva 3D representa de forma esquemática la cúpula semicircular continua apoyada en las columnas estructurales de soporte.</p>
+      
+      <div class="visor-controls-grid">
+        <button class="visor-control-card active" data-material="terracotta" id="btn-mat-terracotta">
+          <h4>Ladrillo Terracota</h4>
+          <p>Acabado rústico regional cálido.</p>
+        </button>
+        <button class="visor-control-card" data-material="concrete" id="btn-mat-concrete">
+          <h4>Concreto Aparente</h4>
+          <p>Look minimalista industrial moderno.</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bóveda de Cañón | Proyecto Cabaña de Playa Premium</title>
+  <meta name="description" content="Proyecto conceptual de una cabaña boutique de 3 niveles con techo en cúpula de bóveda de cañón en Puerto Ángel, Oaxaca. Inspiración orgánica y materiales tradicionales.">
+  <meta name="keywords" content="cabaña, boveda de cañon, puerto angel, oaxaca, arquitectura organica, casona sforza, airbnb, construccion playa">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Side Dot Navigation -->
+  <div class="side-dots-nav" id="side-dots-nav">
+    <div class="side-dot active" data-section="hero" data-tooltip="Inicio"></div>
+    <div class="side-dot" data-section="ficha-tecnica" data-tooltip="Especificaciones"></div>
+    <div class="side-dot" data-section="objetivos" data-tooltip="Objetivos"></div>
+    <div class="side-dot" data-section="distribucion" data-tooltip="Niveles"></div>
+    <div class="side-dot" data-section="visor-3d" data-tooltip="Visor 3D"></div>
+    <div class="side-dot" data-section="renders" data-tooltip="Planos"></div>
+    <div class="side-dot" data-section="inspiracion" data-tooltip="Moodboard"></div>
+    <div class="side-dot" data-section="cuestionario" data-tooltip="Cuestionario"></div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
+          <path d="M12 2C6.48 2 2 6.48 2 12v10h2v-10c0-4.41 3.59-8 8-8s8 3.59 8 8v10h2v-10c0-5.52-4.48-10-10-10zm-6 20h4v-5c0-1.1.9-2 2-2s2 .9 2 2v5h4v-7c0-3.31-2.69-6-6-6s-6 2.69-6 6v7z"/>
+        </svg>
+        <span>BÓVEDA</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#ficha-tecnica">Especificaciones</a></li>
+        <li><a href="#objetivos">Objetivos</a></li>
+        <li><a href="#distribucion">Distribución</a></li>
+        <li><a href="#visor-3d">Visor 3D</a></li>
+        <li><a href="#renders">Renders</a></li>
+        <li><a href="#inspiracion">Inspiración</a></li>
+        <li><a href="#cuestionario">Cuestionario</a></li>
+      </ul>
+      <a href="#renders" class="nav-cta">Explorar Planos</a>
+    </div>
+  </header>
+
+  <!-- SKELETON PLACEHOLDERS FOR SECTION COMPONENTS -->
+  <!-- Loaded asynchronously by main.js -->
+  <section id="hero" class="hero"></section>
+  
+  <section id="ficha-tecnica"></section>
+  
+  <section id="objetivos"></section>
+  
+  <section id="distribucion"></section>
+  
+  <section id="visor-3d" class="visor-3d-section"></section>
+  
+  <section id="renders"></section>
+  
+  <section id="inspiracion" class="gallery-section"></section>
+  
+  <section id="cuestionario"></section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Cerrar vista">&times;</button>
+      <img src="" alt="Ampliación de render" class="lightbox-img">
+      <div class="lightbox-caption">
+        <h3 class="lightbox-title">Título de Imagen</h3>
+        <p class="lightbox-desc">Detalle o descripción de la imagen actual</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-info">
+        <h3>BÓVEDA DE CAÑÓN</h3>
+        <p>Un proyecto residencial conceptual que redefine la habitabilidad de playa mediante cúpulas tradicionales y optimización topográfica en Puerto Ángel, Oaxaca.</p>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#ficha-tecnica">Ficha Técnica</a></li>
+          <li><a href="#objetivos">Objetivos</a></li>
+          <li><a href="#distribucion">Niveles</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Contacto y Créditos</h4>
+        <ul>
+          <li>Propiedad: Tío Alexis (Puerto Ángel)</li>
+          <li>Diseño Conceptual: Adamo Figueroa</li>
+          <li>Inspiración: Casona Sforza</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Proyecto Cabaña Bóveda de Cañón. Todos los derechos reservados.</p>
+      <p>Puerto Ángel, Oaxaca, México.</p>
+    </div>
+  </footer>
+
+  <!-- Three.js CDN imports -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- OrbitControls CDN import -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  
+  <!-- JS Controller (Loads sections and binds events) -->
+  <script src="main.js"></script>
+</body>
+</html>
