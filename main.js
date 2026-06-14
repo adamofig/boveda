@@ -199,6 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
         controls.maxPolarAngle = Math.PI / 2 - 0.05;
         controls.minDistance = 4;
         controls.maxDistance = 15;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.0;
       }
       
       // --- LIGHTS ---
@@ -264,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const vaultGeo = new THREE.CylinderGeometry(2, 2, 8, 32, 1, true, 0, Math.PI);
       vaultMesh = new THREE.Mesh(vaultGeo, materials.terracotta);
       vaultMesh.rotation.x = Math.PI / 2;
-      vaultMesh.rotation.z = -Math.PI / 2;
+      vaultMesh.rotation.z = Math.PI / 2;
       vaultMesh.position.y = 1.5;
       vaultMesh.castShadow = true;
       vaultMesh.receiveShadow = true;
@@ -301,9 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const animate = () => {
         requestAnimationFrame(animate);
         if (controls) controls.update();
-        if (controls && !controls.state == -1) {
-          vaultMesh.rotation.y += 0.001; // gentle drift
-        }
         renderer.render(scene, camera);
       };
       
