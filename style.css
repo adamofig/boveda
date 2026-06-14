@@ -1563,3 +1563,8 @@ footer {
     text-align: center;
   }
 }
+
+/* Custom 3D Viewer Toggle styling */
+#btn-toggle-measures:not(.active) .toggle-indicator {
+  background-color: var(--text-muted) !important;
+}
