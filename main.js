@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- MODULAR SECTION CONFIGURATION ---
   const sectionsToLoad = [
     { id: 'hero', file: 'sections/hero.html' },
+    { id: 'boceto-ai', file: 'sections/boceto-ai.html' },
     { id: 'ficha-tecnica', file: 'sections/ficha-tecnica.html' },
     { id: 'objetivos', file: 'sections/objetivos.html' },
     { id: 'distribucion', file: 'sections/distribucion.html' },

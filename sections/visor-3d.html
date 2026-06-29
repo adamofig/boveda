@@ -40,6 +40,32 @@
           <div class="toggle-indicator" style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--primary); transition: background-color 0.2s;"></div>
         </button>
       </div>
+
+      <!-- Rotación de la Bóveda -->
+      <div class="visor-rotation-container" style="margin-top: 20px; border-top: 1px solid var(--border-glass); padding-top: 16px;">
+        <h4 style="margin: 0 0 4px 0; font-size: 0.85rem; color: var(--primary-light);">🔄 Rotación de la Bóveda (Grados)</h4>
+        <p style="margin: 0 0 16px 0; font-size: 0.72rem; color: var(--text-muted);">Ajusta la orientación del techo (vaultMesh) en tiempo real.</p>
+        
+        <div class="rotation-control-row">
+          <label for="rotate-x-slider">Eje X:</label>
+          <input type="range" id="rotate-x-slider" min="-360" max="360" value="0" class="rotation-slider">
+          <input type="number" id="rotate-x-number" min="-360" max="360" value="0" class="rotation-number">
+        </div>
+
+        <div class="rotation-control-row">
+          <label for="rotate-y-slider">Eje Y:</label>
+          <input type="range" id="rotate-y-slider" min="-360" max="360" value="90" class="rotation-slider">
+          <input type="number" id="rotate-y-number" min="-360" max="360" value="90" class="rotation-number">
+        </div>
+
+        <div class="rotation-control-row">
+          <label for="rotate-z-slider">Eje Z:</label>
+          <input type="range" id="rotate-z-slider" min="-360" max="360" value="90" class="rotation-slider">
+          <input type="number" id="rotate-z-number" min="-360" max="360" value="90" class="rotation-number">
+        </div>
+
+        <button class="btn-reset-rotation" id="btn-reset-rotation">Restaurar Orientación</button>
+      </div>
     </div>
   </div>
 </div>

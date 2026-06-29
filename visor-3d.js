@@ -3,7 +3,7 @@
  * Handles Three.js visualization, materials, and structural dimensions.
  */
 
-window.init3DVisor = function() {
+window.init3DVisor = function () {
   const canvasWrapper = document.getElementById('canvas-wrapper');
   if (!canvasWrapper || typeof THREE === 'undefined') {
     console.warn("Three.js or canvas-wrapper not found.");
@@ -47,7 +47,7 @@ window.init3DVisor = function() {
     controls.minDistance = 4;
     controls.maxDistance = 15;
     controls.target.set(0, 1.2, 0); // Focus camera on the center of the cabin
-    
+
     // Smooth initial rotation
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.6;
@@ -125,7 +125,7 @@ window.init3DVisor = function() {
   scene.add(deckMesh);
 
   // Support pillars
-  const colGeo = new THREE.BoxGeometry(0.2, 1.5, 0.2);
+  const colGeo = new THREE.BoxGeometry(0.4, 3.0, 0.4);
   const colCoords = [
     { x: -2, z: -3 }, { x: -2, z: 0 }, { x: -2, z: 3 },
     { x: 2, z: -3 }, { x: 2, z: 0 }, { x: 2, z: 3 }
@@ -133,7 +133,7 @@ window.init3DVisor = function() {
 
   colCoords.forEach(coord => {
     const colMesh = new THREE.Mesh(colGeo, materials.columns);
-    colMesh.position.set(coord.x, 1.5 / 2, coord.z);
+    colMesh.position.set(coord.x, 3.0 / 2, coord.z);
     colMesh.castShadow = true;
     colMesh.receiveShadow = true;
     scene.add(colMesh);
@@ -143,10 +143,13 @@ window.init3DVisor = function() {
   // Half-cylinder vault (pointing UPWARDS)
   const vaultGeo = new THREE.CylinderGeometry(2, 2, 8, 32, 1, true, 0, Math.PI);
   vaultMesh = new THREE.Mesh(vaultGeo, materials.terracotta);
-  // Rotate around X to point along Z-axis, and around Z by PI/2 to make it arch upwards
-  vaultMesh.rotation.x = Math.PI / 2;
-  vaultMesh.rotation.z = Math.PI / 2;
-  vaultMesh.position.y = 1.5; // Sit directly on top of 1.5m pillars
+  // Rotate around X to point along Z-axis and lie horizontally (acostado)
+  vaultMesh.rotation.x = THREE.MathUtils.degToRad(0); // -90 grados
+  vaultMesh.rotation.y = THREE.MathUtils.degToRad(90); // -90 grados
+  vaultMesh.rotation.z = THREE.MathUtils.degToRad(90); // -90 grados
+
+
+  vaultMesh.position.y = 3.0; // Elevate to sit on top of the columns (columns top is at Y = 3.0)
   vaultMesh.castShadow = true;
   vaultMesh.receiveShadow = true;
   scene.add(vaultMesh);
@@ -276,10 +279,10 @@ window.init3DVisor = function() {
 
   const dimAlto = createDimensionLine(
     new THREE.Vector3(2, 0, -3.9),     // start (floor)
-    new THREE.Vector3(2, 3.5, -3.9),   // end (roof apex height: pillars 1.5 + vault 2.0 = 3.5m)
+    new THREE.Vector3(2, 5.0, -3.9),   // end (roof apex height: pillars 3.0 + vault 2.0 = 5.0m)
     new THREE.Vector3(1, 0, 0),        // offset right
     0.8,                               // distance
-    "Alto: 3.50m"
+    "Alto: 5.00m"
   );
   measuresGroup.add(dimAlto);
 
@@ -335,11 +338,78 @@ window.init3DVisor = function() {
     renderer.setSize(width, height);
   };
   window.addEventListener('resize', handleResize);
-  
+
   // Also stop autoRotate when the user interacts
   if (controls) {
     controls.addEventListener('start', () => {
       controls.autoRotate = false;
+    });
+  }
+
+  // --- 8. ROTATION CONTROLS EVENT LISTENERS ---
+  const rotateXSlider = document.getElementById('rotate-x-slider');
+  const rotateXNumber = document.getElementById('rotate-x-number');
+  const rotateYSlider = document.getElementById('rotate-y-slider');
+  const rotateYNumber = document.getElementById('rotate-y-number');
+  const rotateZSlider = document.getElementById('rotate-z-slider');
+  const rotateZNumber = document.getElementById('rotate-z-number');
+  const btnResetRotation = document.getElementById('btn-reset-rotation');
+
+  function updateVaultRotation() {
+    if (!vaultMesh) return;
+    const xDeg = parseFloat(rotateXSlider.value) || 0;
+    const yDeg = parseFloat(rotateYSlider.value) || 0;
+    const zDeg = parseFloat(rotateZSlider.value) || 0;
+
+    vaultMesh.rotation.x = THREE.MathUtils.degToRad(xDeg);
+    vaultMesh.rotation.y = THREE.MathUtils.degToRad(yDeg);
+    vaultMesh.rotation.z = THREE.MathUtils.degToRad(zDeg);
+  }
+
+  function syncRotationInputs(slider, number, val) {
+    if (slider) slider.value = val;
+    if (number) number.value = val;
+    updateVaultRotation();
+  }
+
+  if (rotateXSlider && rotateXNumber) {
+    rotateXSlider.addEventListener('input', (e) => {
+      rotateXNumber.value = e.target.value;
+      updateVaultRotation();
+    });
+    rotateXNumber.addEventListener('input', (e) => {
+      rotateXSlider.value = e.target.value;
+      updateVaultRotation();
+    });
+  }
+
+  if (rotateYSlider && rotateYNumber) {
+    rotateYSlider.addEventListener('input', (e) => {
+      rotateYNumber.value = e.target.value;
+      updateVaultRotation();
+    });
+    rotateYNumber.addEventListener('input', (e) => {
+      rotateYSlider.value = e.target.value;
+      updateVaultRotation();
+    });
+  }
+
+  if (rotateZSlider && rotateZNumber) {
+    rotateZSlider.addEventListener('input', (e) => {
+      rotateZNumber.value = e.target.value;
+      updateVaultRotation();
+    });
+    rotateZNumber.addEventListener('input', (e) => {
+      rotateZSlider.value = e.target.value;
+      updateVaultRotation();
+    });
+  }
+
+  if (btnResetRotation) {
+    btnResetRotation.addEventListener('click', () => {
+      syncRotationInputs(rotateXSlider, rotateXNumber, 0);
+      syncRotationInputs(rotateYSlider, rotateYNumber, 90);
+      syncRotationInputs(rotateZSlider, rotateZNumber, 90);
     });
   }
 };
